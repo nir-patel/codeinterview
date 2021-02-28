@@ -12,14 +12,9 @@ namespace CodeInterview
 
             Console.WriteLine("***********OutPut***********");
 
-            int[] _ids = { 1, 2, 3, 4, 5 };
-            List<int> _array1 = new List<int>() { 3, 7, 20, 5, 2, 1 };
-            //DisplayNumbers(_ids, _array1);
-
-
-            int[] v = { 5, 7, 1, 2, 8, 4, 3 };
-            int[] test = { 3, 20, 1, 2, 7 };
-            for (int i = 0; i < test.Length; i++)
+            int[] v = {6};//{ 5, 7, 1, 2, 8, 4, 3 };
+            int[] test = {1,5,3,3,3};//{ 3, 20, 1, 2, 7 };
+            for (int i = 0; i < v.Length; i++)
             {
                 var result = FindSumOfTwo(test, v[i]);
                 if (result)
@@ -39,36 +34,22 @@ namespace CodeInterview
 
         }
 
-
-        public static void DisplayNumbers(int[] ids, List<int> list)
-        {
-            Console.WriteLine("Printing Array");
-            
-            for (int i = 0; i < ids.Length; i++)
-            {
-                Console.WriteLine(ids[i]);
-            }
-
-            list.Add(50);
-            Console.WriteLine("Printing List");
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.WriteLine(list[i]);
-            }
-            var a = Guid.NewGuid().ToString();
-            Console.WriteLine(a);
-        }
-
         private static bool FindSumOfTwo(int[] test, int v)
         { 
             List<int> result = new List<int>();
+            int cnt = 0;
             foreach(int a in test)
             {
                 if(result.Contains(v - a))
                 {
-                    return true;
+                    cnt++;
+                    //return true;
                 }
-                result.Add(a);
+                else
+                {
+                    result.Add(a);
+                }
+                
             }
             return false;
         }

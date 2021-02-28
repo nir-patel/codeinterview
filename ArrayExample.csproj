@@ -19,6 +19,10 @@
     <Compile Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.AssemblyInfo.cs" />
     <Compile Remove="ContiguousSubarrays\Program.cs" />
     <Compile Remove="InputCpher\Program.cs" />
+    <Compile Remove="BSTExample\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.AssemblyInfo.cs" />
+    <Compile Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.AssemblyInfo.cs" />
+    <Compile Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="BSTExample\obj\BSTExample.csproj.nuget.g.props" />
@@ -100,5 +104,19 @@
     <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.pdb" />
     <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.genruntimeconfig.cache" />
     <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.csproj.FileListAbsolute.txt" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.AssemblyInfoInputs.cache" />
+    <None Remove="BSTExample\bin\Debug\netcoreapp3.1\BSTExample.runtimeconfig.dev.json" />
+    <None Remove="BSTExample\bin\Debug\netcoreapp3.1\BSTExample.pdb" />
+    <None Remove="BSTExample\bin\Debug\netcoreapp3.1\BSTExample.deps.json" />
+    <None Remove="BSTExample\bin\Debug\netcoreapp3.1\BSTExample.dll" />
+    <None Remove="BSTExample\bin\Debug\netcoreapp3.1\BSTExample.runtimeconfig.json" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.pdb" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.csproj.FileListAbsolute.txt" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.genruntimeconfig.cache" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.dll" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.csproj.CoreCompileInputs.cache" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.csprojAssemblyReference.cache" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.AssemblyInfoInputs.cache" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.csprojAssemblyReference.cache" />
   </ItemGroup>
 </Project>
