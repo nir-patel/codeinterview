@@ -1,0 +1,104 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BSTExample\Program.cs" />
+    <Compile Remove="LinkedListExample\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.AssemblyInfo.cs" />
+    <Compile Remove="LinkedListExample\Program.cs" />
+    <Compile Remove="ContiguousSubarrays\Program.cs" />
+    <Compile Remove="InputCpher\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Remove="InputCpher\Program.cs" />
+    <Compile Remove="MatchingPairs\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Remove="MatchingPairs\Program.cs" />
+    <Compile Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.AssemblyInfo.cs" />
+    <Compile Remove="ContiguousSubarrays\Program.cs" />
+    <Compile Remove="InputCpher\Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="BSTExample\obj\BSTExample.csproj.nuget.g.props" />
+    <None Remove="BSTExample\obj\BSTExample.csproj.nuget.g.targets" />
+    <None Remove="BSTExample\obj\project.assets.json" />
+    <None Remove="BSTExample\obj\project.nuget.cache" />
+    <None Remove="BSTExample\obj\BSTExample.csproj.nuget.dgspec.json" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.assets.cache" />
+    <None Remove="BSTExample\obj\Debug\netcoreapp3.1\BSTExample.csprojAssemblyReference.cache" />
+    <None Remove="LinkedListExample\bin\Debug\netcoreapp3.1\LinkedListExample.deps.json" />
+    <None Remove="LinkedListExample\bin\Debug\netcoreapp3.1\LinkedListExample.runtimeconfig.json" />
+    <None Remove="LinkedListExample\bin\Debug\netcoreapp3.1\LinkedListExample.runtimeconfig.dev.json" />
+    <None Remove="LinkedListExample\bin\Debug\netcoreapp3.1\LinkedListExample.dll" />
+    <None Remove="LinkedListExample\bin\Debug\netcoreapp3.1\LinkedListExample.pdb" />
+    <None Remove="LinkedListExample\obj\LinkedListExample.csproj.nuget.g.props" />
+    <None Remove="LinkedListExample\obj\LinkedListExample.csproj.nuget.g.targets" />
+    <None Remove="LinkedListExample\obj\project.assets.json" />
+    <None Remove="LinkedListExample\obj\project.nuget.cache" />
+    <None Remove="LinkedListExample\obj\LinkedListExample.csproj.nuget.dgspec.json" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.assets.cache" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.csprojAssemblyReference.cache" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.AssemblyInfoInputs.cache" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.csproj.CoreCompileInputs.cache" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.csproj.FileListAbsolute.txt" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.dll" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.pdb" />
+    <None Remove="LinkedListExample\obj\Debug\netcoreapp3.1\LinkedListExample.genruntimeconfig.cache" />
+    <None Remove="FB-CodeSamples.txt" />
+    <None Remove="ContiguousSubarrays\obj\ContiguousSubarrays.csproj.nuget.dgspec.json" />
+    <None Remove="ContiguousSubarrays\obj\ContiguousSubarrays.csproj.nuget.g.props" />
+    <None Remove="ContiguousSubarrays\obj\ContiguousSubarrays.csproj.nuget.g.targets" />
+    <None Remove="ContiguousSubarrays\obj\project.nuget.cache" />
+    <None Remove="ContiguousSubarrays\obj\project.assets.json" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.csprojAssemblyReference.cache" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.assets.cache" />
+    <None Remove="InputCpher\bin\Debug\netcoreapp3.1\InputCpher.deps.json" />
+    <None Remove="InputCpher\bin\Debug\netcoreapp3.1\InputCpher.dll" />
+    <None Remove="InputCpher\bin\Debug\netcoreapp3.1\InputCpher.runtimeconfig.dev.json" />
+    <None Remove="InputCpher\bin\Debug\netcoreapp3.1\InputCpher.pdb" />
+    <None Remove="InputCpher\bin\Debug\netcoreapp3.1\InputCpher.runtimeconfig.json" />
+    <None Remove="InputCpher\obj\InputCpher.csproj.nuget.g.targets" />
+    <None Remove="InputCpher\obj\InputCpher.csproj.nuget.dgspec.json" />
+    <None Remove="InputCpher\obj\project.nuget.cache" />
+    <None Remove="InputCpher\obj\project.assets.json" />
+    <None Remove="InputCpher\obj\InputCpher.csproj.nuget.g.props" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.csproj.FileListAbsolute.txt" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.assets.cache" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.AssemblyInfoInputs.cache" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.dll" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.csprojAssemblyReference.cache" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.pdb" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.csproj.CoreCompileInputs.cache" />
+    <None Remove="InputCpher\obj\Debug\netcoreapp3.1\InputCpher.genruntimeconfig.cache" />
+    <None Remove="MatchingPairs\bin\Debug\netcoreapp3.1\MatchingPairs.runtimeconfig.dev.json" />
+    <None Remove="MatchingPairs\bin\Debug\netcoreapp3.1\MatchingPairs.runtimeconfig.json" />
+    <None Remove="MatchingPairs\bin\Debug\netcoreapp3.1\MatchingPairs.dll" />
+    <None Remove="MatchingPairs\bin\Debug\netcoreapp3.1\MatchingPairs.pdb" />
+    <None Remove="MatchingPairs\bin\Debug\netcoreapp3.1\MatchingPairs.deps.json" />
+    <None Remove="MatchingPairs\obj\MatchingPairs.csproj.nuget.g.props" />
+    <None Remove="MatchingPairs\obj\project.nuget.cache" />
+    <None Remove="MatchingPairs\obj\MatchingPairs.csproj.nuget.dgspec.json" />
+    <None Remove="MatchingPairs\obj\MatchingPairs.csproj.nuget.g.targets" />
+    <None Remove="MatchingPairs\obj\project.assets.json" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.dll" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.csproj.FileListAbsolute.txt" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.pdb" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.genruntimeconfig.cache" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.assets.cache" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.csproj.CoreCompileInputs.cache" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.csprojAssemblyReference.cache" />
+    <None Remove="MatchingPairs\obj\Debug\netcoreapp3.1\MatchingPairs.AssemblyInfoInputs.cache" />
+    <None Remove="ContiguousSubarrays\bin\Debug\netcoreapp3.1\ContiguousSubarrays.deps.json" />
+    <None Remove="ContiguousSubarrays\bin\Debug\netcoreapp3.1\ContiguousSubarrays.runtimeconfig.json" />
+    <None Remove="ContiguousSubarrays\bin\Debug\netcoreapp3.1\ContiguousSubarrays.dll" />
+    <None Remove="ContiguousSubarrays\bin\Debug\netcoreapp3.1\ContiguousSubarrays.pdb" />
+    <None Remove="ContiguousSubarrays\bin\Debug\netcoreapp3.1\ContiguousSubarrays.runtimeconfig.dev.json" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.csproj.CoreCompileInputs.cache" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.dll" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.pdb" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.genruntimeconfig.cache" />
+    <None Remove="ContiguousSubarrays\obj\Debug\netcoreapp3.1\ContiguousSubarrays.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+</Project>
