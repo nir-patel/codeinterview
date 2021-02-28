@@ -32,6 +32,8 @@ namespace CodeInterview
             Print2DMatrix(TwoDMatrix);
             ZeroRowCol(TwoDMatrix);
 
+            int[] result1 = MoveZeros(new int[] { 1, 10, 20, 0, 59, 63, 0, 88, 0 });
+            PrintArry(result1);
         }
 
         private static bool FindSumOfTwo(int[] test, int v)
@@ -43,7 +45,7 @@ namespace CodeInterview
                 if(result.Contains(v - a))
                 {
                     cnt++;
-                    //return true;
+                    return true;
                 }
                 else
                 {
@@ -112,6 +114,41 @@ namespace CodeInterview
             }
         }
 
-        
+
+        private static int[] MoveZeros(int[] arr)
+        {
+            int[] result = new int[arr.Length];
+            int count = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == 0)
+                {
+                    result[count] = arr[i];
+                    count++;
+                }
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] != 0)
+                {
+                    result[count] = arr[i];
+                    count++;
+                }
+            }
+            return result;
+        }
+        private static void PrintArry(int[] arr)
+        {
+            
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write(arr[i] + ",");
+            }
+            
+        }
+
+
+
+
     }
 }

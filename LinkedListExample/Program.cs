@@ -17,12 +17,12 @@ namespace LinkedListExample
             slist.CreateList(new int[] { 1, 2, 8, 9, 12, 16 });
             Node n = slist.head;
             Console.WriteLine("Last Node: " + slist.GetLastNode().data);
-            slist.PrintLinkedList();
+            slist.PrintLinkedList(slist.head);
             Console.Write("Enter node value to Delete that node:-> ");
             var key = Console.ReadLine();
             int data = Convert.ToInt32(key);
             slist.DeleteNode(data);
-            slist.PrintLinkedList();
+            slist.PrintLinkedList(slist.head);
         }
     }
     public class SingleLinkedList
@@ -63,29 +63,37 @@ namespace LinkedListExample
             }
             return n;
         }
-        public void PrintLinkedList()
+        public void PrintLinkedList(Node head)
         {
     
             Node n = head;
-            while(n.next != null)
+            while(n != null)
             {
                 
                 Console.Write(n.data + "->");
                 n = n.next;
             }
-            Console.Write(n.data);
             Console.WriteLine();
         }
 
         public void DeleteNode(int data)
         {
             Node current = head;
-            Node previous = new Node(0);
-            while(current.next != null)
+            Node previous = null;
+            if(current.data == data &&current.next != null)
+            {
+                head = current.next;
+                return;
+            }
+            while(current != null)
             {
                 if(current.data == data)
                 {
                     previous.next = current.next;
+                    if(previous == null && current.next == null) // One node only
+                    {
+                        head = null;
+                    }
                     return;
                 }
                 else
@@ -93,10 +101,6 @@ namespace LinkedListExample
                     previous = current;
                     current = current.next;
                 }
-            }
-            if(current.data == data)
-            {
-                head = null;
             }
         }
 

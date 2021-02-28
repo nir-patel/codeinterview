@@ -5,7 +5,8 @@ public class RotationalCipher
 
     static void Main(String[] args)
     {
-        Console.WriteLine(rotationalCipher("Znirav-64", 3));
+        //Console.WriteLine(rotationalCipher("Znirav-64", 3));
+        Console.WriteLine(ReverseWords("Nirav Patel"));
     }
 
     private static string rotationalCipher(String input, int rotationFactor)
@@ -49,5 +50,25 @@ public class RotationalCipher
         }
         return result;
     }
+
+
+    private static string ReverseWords(string s)
+    {
+        string op="";
+
+
+        string[] words = s.Split(" ");
+        foreach(string w in words)
+        {
+            for(int i = w.Length - 1; i>= 0; i--)
+            {
+                op = op + w[i];
+            }
+            op = op + " ";
+        }
+
+        return op;
+    }
+
 
 }
