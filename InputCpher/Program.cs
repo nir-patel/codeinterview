@@ -5,8 +5,10 @@ public class RotationalCipher
 
     static void Main(String[] args)
     {
-        //Console.WriteLine(rotationalCipher("Znirav-64", 3));
-        Console.WriteLine(ReverseWords("Nirav Patel"));
+        Console.Write("Enter rotation number:");
+        int ip = int.Parse(Console.ReadLine());
+        Console.WriteLine(rotationalCipher("nirav-649", ip));
+        //Console.WriteLine(ReverseWords("Nirav Patel"));
     }
 
     private static string rotationalCipher(String input, int rotationFactor)

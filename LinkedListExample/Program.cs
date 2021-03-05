@@ -19,9 +19,9 @@ namespace LinkedListExample
             slist.PrintLinkedList(slist.head);
             Console.WriteLine("Last Node: " + slist.GetLastNode().data);
 
-            //Console.Write("Enter node value to Delete that node:-> ");
-            //var key = int.Parse(Console.ReadLine());
-            //slist.DeleteNode(key);
+            Console.Write("Enter node value to Delete that node:-> ");
+            var key = int.Parse(Console.ReadLine());
+            slist.DeleteNode(key);
 
             slist.AddNode(10);
             slist.PrintLinkedList(slist.head);
@@ -174,7 +174,7 @@ namespace LinkedListExample
         {
             Node current = head;
             Node previous = null;
-            if(current.data == data &&current.next != null)
+            if(current.data == data && current.next != null)
             {
                 head = current.next;
                 return;
@@ -183,11 +183,11 @@ namespace LinkedListExample
             {
                 if(current.data == data)
                 {
-                    previous.next = current.next;
                     if(previous == null && current.next == null) // One node only
                     {
                         head = null;
                     }
+                    previous.next = current.next;
                     return;
                 }
                 else
@@ -201,11 +201,15 @@ namespace LinkedListExample
         public void ReverseList()
         {
             Node current = head;
-            Node previuos = new Node(0);
-            while(current.next != null)
+            Node prev = null, next = null;
+            while (current != null)
             {
-                
+                next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
             }
+            head = prev;
         }
 
     }

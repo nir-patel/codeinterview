@@ -12,6 +12,7 @@ namespace CodeInterview
 
             Console.WriteLine("***********OutPut***********");
 
+
             int[] v = {6};//{ 5, 7, 1, 2, 8, 4, 3 };
             int[] test = {1,5,3,3,3};//{ 3, 20, 1, 2, 7 };
             for (int i = 0; i < v.Length; i++)

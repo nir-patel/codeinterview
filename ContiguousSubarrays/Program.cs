@@ -13,6 +13,9 @@ namespace ContiguousSubarrays
             int[] arr = { 3, 4, 1, 6, 2 };
 
             int[] outArr = countSubarrays(arr);
+
+            for (int i = 0; i < outArr.Length; i++)
+                Console.WriteLine(outArr[i] + " ");
         }
 
 

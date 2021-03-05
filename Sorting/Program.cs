@@ -7,7 +7,7 @@ namespace Sorting
     {
         static void Main(string[] args)
         {
-            int[] result = SortArray(new int[] { 1, 5, 7, 1 });
+            int[] result = bubbleSort(new int[] { 1, 5, 7, 1 });
             bool splitable = IsSplitable(result);
             Console.WriteLine(splitable);
 
@@ -16,6 +16,18 @@ namespace Sorting
             };
             Console.WriteLine("Unique Triangles: " + CointingTriangles(t));
 
+            IsSum(new int[] { 1, 3, 1, 2, 15 }, 6);
+
+            int[,] prer = new int[,] {
+                { 1, 0}, {2, 0 }, { 0, 5 },{5,6 }, { 3, 1 }, { 3, 2 }
+            };
+            List<int>  dfs = MapDepemdency(prer, prer.GetLength(0));
+            Console.WriteLine("Graph dependecy: ");
+            foreach(int a in dfs)
+            {
+                Console.Write(a + " ");
+            }
+
         }
 
         private static int[] SortArray(int[] arr)
@@ -23,13 +35,32 @@ namespace Sorting
             int temp = 0;
             for (int i = 0; i < arr.Length; i++)
             {
-                for (int j = i; j < arr.Length; j++)
+                for (int j = i + 1; j < arr.Length; j++)
                 {
                     if (arr[i] > arr[j])
                     {
                         temp = arr[i];
                         arr[i] = arr[j];
                         arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        static int[] bubbleSort(int[] arr)
+        {
+            int n = arr.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (arr[j] > arr[j + 1])
+                    {
+                        // swap temp and arr[i] 
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
                     }
                 }
             }
@@ -63,8 +94,6 @@ namespace Sorting
             }
             return false;
         }
-
-
 
         private static int CointingTriangles(int[,] t)
         {
@@ -122,6 +151,102 @@ namespace Sorting
             return (length - cnt);
         }
 
+        public static bool IsSum(int[] arr, int x)
+        {
+            int cnt = 0;
+            int total = 0;
+            for(int i =0; i< arr.Length; i++)
+            {
+                total = total + arr[i];
+                if(total == x)
+                {
+                    return true;
+                }
+                else if(total > x)
+                {
+                    while(total > x)
+                    {
+                        total = total - arr[cnt];
+                        cnt++;
+                    }
+                    if(total == x)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
+        public static List<int> MapDepemdency(int[,] prer, int ncourses)
+        {
+            //int[] cOrder = new int[prer.GetLength(0)];
+            List<int> cOrder = new List<int>(prer.GetLength(0));
+            for (int i=0;i< prer.GetLength(0); i++)
+            {
+                int second = prer[i,0];
+                int first = prer[i,1];
+                Stack<int> dependency = new Stack<int>();
+                //dependency = checkDependency(i + 1, first, prer, ncourses);
+                checkDependencyRec(i + 1, first, prer, ncourses,dependency);
+                foreach (int a in dependency)
+                {
+                    if(!cOrder.Contains(a))
+                        cOrder.Add(a);
+                }
+                if (!cOrder.Contains(first))
+                    cOrder.Add(first);
+                if (!cOrder.Contains(second))
+                    cOrder.Add(second);
+            }
+            return cOrder;
+        }
+        
+        //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
+        private static Stack<int> checkDependency(int index, int depe,int[,] prer, int n)
+        {
+            int result = -1;
+            Stack<int> dependency = new Stack<int>();
+            while (index <= n - 1)
+            {
+                if (prer[index, 0] == depe)
+                {
+                    result = prer[index, 1];
+                    dependency.Push(result);
+                    depe = result;
+                    index += 1; 
+                }
+                else
+                {
+                    index += 1;
+                }
+            }
+            return dependency;
+        }
+
+        //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
+        private static void checkDependencyRec(int index, int depe, int[,] prer, int n, Stack<int> dependency)
+        {
+            int result = -1;
+            if (index <= n - 1)
+            {
+                if (prer[index, 0] == depe)
+                {
+                    result = prer[index, 1];
+                    dependency.Push(result);
+                    depe = result;
+                    index += 1;
+                    checkDependencyRec(index,depe,prer,n,dependency);
+                }
+                else
+                {
+                    index += 1;
+                    checkDependencyRec(index, depe, prer, n, dependency);
+                }
+            }
+            
+        }
 
     }
 }

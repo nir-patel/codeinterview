@@ -7,8 +7,8 @@ namespace MatchingPairs
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Matching pairs: " + matchingPairs("mno", "mno"));
-            Console.WriteLine(minLengthSubstring("dcbefebce", "fd"));
+            Console.WriteLine("Matching pairs: " + matchingPairs("mno", "mno"));
+            //Console.WriteLine(minLengthSubstring("dcbefebce", "fd"));
         }
 
         private static int matchingPairs(string s, string t)
