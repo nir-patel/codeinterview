@@ -200,6 +200,7 @@ namespace Sorting
                 if (!cOrder.Contains(second))
                     cOrder.Add(second);
             }
+            Console.WriteLine(cOrder.Count == ncourses ? true : false);
             return cOrder;
         }
         
