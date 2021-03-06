@@ -1,107 +1,67 @@
-﻿using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using System.Text;
-using System;
-
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
 
-class Result
+
+class Result
 {
 
-    /*
-     * Complete the 'getNumDraws' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts INTEGER year as parameter.
-     */
-    
-    public static int getNumDraws(int year)
-    {
-        int cnt =1;
-        var task = Task.Run(async ()=> await ProcessRequest(year));
-        cnt = task.Result;
-        return cnt;
-    }
-    
-    private static async Task<int> ProcessRequest(int year){
-        string result;
-        int cnt = 2;
-        string baseurl = "https://jsonmock.hackerrank.com/";
-        //string endpoint= $"api/football_matches?year={year}&page={p}&team1goals=team2goals";
-        string endpoint= $"api/football_matches?year={year}&team1goals=team2goals";
-        HttpClient apiClient = new HttpClient();
-        apiClient.BaseAddress = new Uri(baseurl);
-        //HttpRequestMessage reqMsg = new HttpRequestMessage(endpoint);
-        //reqMsg.Method = HttpMethod.Get;
-        try{
-            using(HttpResponseMessage resMsg = 
-        await apiClient.GetAsync(endpoint).ConfigureAwait(false)){
-            if(resMsg.IsSuccessStatusCode){
-                result = await resMsg.Content.ReadAsStringAsync().ConfigureAwait(false);
-                //APIResponse r = JsonConvert.DeserializedObject<APIResponse>(result);
-                //cnt = APIResponse.data.Count();
-            }else{
-                result = "";
-            }
-        }
-        }catch(Exception ex){
-            cnt = 3;
-        }
-        return cnt;
-    }
-}
-public class APIResponse{
-    
-    public APIResponse(){
-        data = new List<Match>();
-    }
-    public int page {get;set;}
-    public int per_page {get;set;}
-    public int total {get;set;}
-    public int total_pages {get;set;}
-    public List<Match> data {get;set;}
-}
-public class Match{
-    
-    public Match(){
-        
-    }
-    public string competition {get;set;}
-    public int year {get;set;}
-    public string round {get;set;}
-    public string team1 {get;set;}
-    public string team2 {get;set;}
-    public string team1goals {get;set;}
-    public string team2goals {get;set;}
+    /*
+     * Complete the 'decryptPassword' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static string decryptPassword(string str)
+    {
+        //34Ah*ck0rr0nk
+        string oristr = "";
+        string nums = "123456789";
+        
+        List<char> temp = new List<char>(str.Length);
+        for(int i =0; i<str.Length; i++){
+
+            if(nums.Contains(str[i])){
+                temp.Add(str[i]);
+                int index = str.IndexOf("0");
+                char[] ca = str.ToCharArray();
+                ca[index] = str[i];
+                str = new String(ca);
+                str = str.Substring(i +1);
+            }
+            
+        }
+        return str;
+    }
+
 }
 
-class Solution
+class Solution
 {
-    public static void Main(string[] args)
-    {
-        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+    public static void Main(string[] args)
+    {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-        int year = Convert.ToInt32(Console.ReadLine().Trim());
+        string s = Console.ReadLine();
 
-        var result = Result.getNumDraws(year);
+        string result = Result.decryptPassword(s);
 
-        textWriter.WriteLine(result);
+        textWriter.WriteLine(result);
 
-        textWriter.Flush();
-        textWriter.Close();
-    }
+        textWriter.Flush();
+        textWriter.Close();
+    }
 }
+-------------------------------
