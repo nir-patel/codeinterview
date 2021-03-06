@@ -15,7 +15,6 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-//using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -43,7 +42,6 @@ class Result
     {
         string baseurl = "https://jsonmock.hackerrank.com/";
         string endpoint= $"api/football_matches?year={year}&page=1";
-        //string endpoint = $"api/football_matches?year={year}&team1goals=team2goals";
         HttpClient apiClient = new HttpClient();
         apiClient.BaseAddress = new Uri(baseurl);
         //HttpRequestMessage reqMsg = new HttpRequestMessage(endpoint);
@@ -65,7 +63,6 @@ class Result
                     {
                         result = await resMsg.Content.ReadAsStringAsync().ConfigureAwait(false);
                         APIResponse r = JsonSerializer.Deserialize<APIResponse>(result);
-                        //APIResponse r = JsonConvert.DeserializeObject<APIResponse>(result);
                         if (r.data.Count() == 0)
                             break;
                         cnt = cnt + r.data.Where(d => d.team1goals == d.team2goals).Count();
@@ -80,11 +77,6 @@ class Result
         }
         return cnt;
     }
-
-    //private static async Task<int> Callendpoints(int year)
-    //{
-
-    //}
 }
 
 
