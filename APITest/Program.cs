@@ -40,34 +40,21 @@ class Result
 
     private static async Task<int> ProcessRequest(int year)
     {
-        string baseurl = "https://jsonmock.hackerrank.com/";
+       
         string endpoint= $"api/football_matches?year={year}&page=1";
-        HttpClient apiClient = new HttpClient();
-        apiClient.BaseAddress = new Uri(baseurl);
-        //HttpRequestMessage reqMsg = new HttpRequestMessage(endpoint);
-        //reqMsg.Method = HttpMethod.Get;
-
-        string result = string.Empty;
         int cnt = 0;
         int page = 0;
+        APIClient client = new APIClient("https://jsonmock.hackerrank.com/");
         try
         {
             while(true)
             {
                 page++;
                 endpoint = $"api/football_matches?year={year}&page={page.ToString()}";
-                using (HttpResponseMessage resMsg =
-                await apiClient.GetAsync(endpoint).ConfigureAwait(false))
-                {
-                    if (resMsg.IsSuccessStatusCode)
-                    {
-                        result = await resMsg.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        APIResponse r = JsonSerializer.Deserialize<APIResponse>(result);
-                        if (r.data.Count() == 0)
-                            break;
-                        cnt = cnt + r.data.Where(d => d.team1goals == d.team2goals).Count();
-                    }
-                }
+                APIResponse r = await client.ProcessGetrequest<APIResponse>(endpoint).ConfigureAwait(false);
+                if (r.data.Count() == 0)
+                    break;
+                cnt = cnt + r.data.Where(d => d.team1goals == d.team2goals).Count();
             }
         }
         catch (Exception ex)
@@ -79,6 +66,44 @@ class Result
     }
 }
 
+public class APIClient
+{
+    private string _baseAddress;
+
+    private HttpClient _apiClient;
+
+    public APIClient(string baseAddress)
+    {
+        _baseAddress = baseAddress;
+        Init();
+    }
+    
+    private void Init()
+    {
+        _apiClient = new HttpClient();
+        _apiClient.BaseAddress = new Uri(_baseAddress);
+    }
+
+    public async Task<T> ProcessGetrequest<T>(string endpoint)
+    {
+        T result = default(T);
+        using (HttpResponseMessage response = await _apiClient.GetAsync(endpoint).ConfigureAwait(false))
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                //result = await response.Content.ReadAsAsync<T>().ConfigureAwait(false);
+                var strresult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                result = JsonSerializer.Deserialize<T>(strresult);
+            }
+            else
+            {
+                throw new Exception($"Error in Get request method {endpoint} of api {_apiClient.BaseAddress}");
+            }
+        }
+        return result;
+    }
+
+}
 
 public class APIResponse
 {

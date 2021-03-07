@@ -16,17 +16,30 @@ namespace Sorting
             };
             Console.WriteLine("Unique Triangles: " + CointingTriangles(t));
 
+
+            //-------------------------------------
             IsSum(new int[] { 1, 3, 1, 2, 15 }, 6);
 
+
+            //------------------------------------
             int[,] prer = new int[,] {
                 { 1, 0}, {2, 0 }, { 0, 5 },{5,6 }, { 3, 1 }, { 3, 2 }
             };
-            List<int>  dfs = MapDepemdency(prer, prer.GetLength(0));
-            Console.WriteLine("Graph dependecy: ");
+            Console.WriteLine("Graph: {{ 1, 0}, {2, 0 }, { 0, 5 },{5, 6}, { 3, 1 }, { 3, 2 }}");
+            List<int>  dfs = MapDependencyDFS(prer, prer.GetLength(0));
+            Console.WriteLine("Graph dependecy DFS: ");
             foreach(int a in dfs)
             {
                 Console.Write(a + " ");
             }
+            Console.WriteLine();
+            List<int> bfs = BFS(prer, 3);
+            Console.WriteLine("Graph dependecy BFS: ");
+            foreach (int a in bfs)
+            {
+                Console.Write(a + " ");
+            }
+            //-----------------------------------------
 
         }
 
@@ -179,7 +192,7 @@ namespace Sorting
         }
 
         //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
-        public static List<int> MapDepemdency(int[,] prer, int ncourses)
+        public static List<int> MapDependencyDFS(int[,] prer, int ncourses)
         {
             //int[] cOrder = new int[prer.GetLength(0)];
             List<int> cOrder = new List<int>(prer.GetLength(0));
@@ -248,6 +261,84 @@ namespace Sorting
             }
             
         }
+
+
+        //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
+        public static List<int> BFS(int[,] graph, int start)
+        {
+            bool[] visited = new bool[graph.GetLength(0)];
+            for (int i = 0; i < visited.Length; i++)
+                visited[i] = false;
+
+            List<int> cOrder = new List<int>(graph.GetLength(0));
+            cOrder.Add(start);
+            ProcessBFS(graph, new List<int>() { start }, cOrder,visited) ;
+            return cOrder;
+        }
+        public static void ProcessBFS(int[,] graph, List<int> edges,List<int> bfs, bool[] visited)
+        {
+            List<int> newedges = new List<int>();
+            foreach(int i in edges)
+            {
+                for(int j = 0; j < graph.GetLength(0); j++)
+                {
+                    if (!visited[j])
+                    {
+                        if (graph[j, 0] == i)
+                        {
+                            visited[j] = true;
+                            if (!bfs.Contains(graph[j, 1]))
+                            {
+                                bfs.Add(graph[j, 1]);
+                                newedges.Add(graph[j, 1]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (newedges.Count > 0)
+            {
+                ProcessBFS(graph, newedges, bfs,visited);
+            }
+
+        }
+
+        //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
+        public static List<int> DFS(int[,] graph, int start)
+        {
+            bool[] visited = new bool[graph.GetLength(0)];
+            for (int i = 0; i < visited.Length; i++)
+                visited[i] = false;
+
+            List<int> cOrder = new List<int>(graph.GetLength(0));
+            for (int i = 0; i < visited.Length; i++)
+            {
+                ProcessDFS(graph, graph[i, 0], cOrder, visited);
+            }
+            return cOrder;
+        }
+        public static void ProcessDFS(int[,] graph, int edge, List<int> dfs, bool[] visited)
+        {
+            if(!dfs.Contains(edge))
+            {
+                dfs.Add(edge);
+            }
+                
+
+                for (int j = 0; j < graph.GetLength(0); j++)
+                {
+                    if (!visited[j])
+                    {
+                        if (graph[j, 0] == edge)
+                        {
+                            visited[j] = true;
+                            ProcessDFS(graph, graph[j, 1], dfs, visited);
+                        }
+                    }
+                }  
+        }
+
 
     }
 }
