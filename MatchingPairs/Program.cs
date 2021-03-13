@@ -14,6 +14,9 @@ namespace MatchingPairs
             string epass = "34Ah*ck0rr0nk";
             Console.WriteLine($"Encrypted Pass: {epass}");
             Console.WriteLine($"Decrypted Pass: {decryptPassword(epass)}");
+
+            //countFre("ababcd");
+            countFrequency("ababcd");
         }
 
         private static int matchingPairs(string s, string t)
@@ -129,5 +132,42 @@ namespace MatchingPairs
 
             return str;
         }
+
+
+        public static void countFre(string S)
+        {
+             //S = "ababcd";
+
+            for (char c = 'a'; c <= 'z'; c++)
+            {
+                int frequency = 0;
+                for (int i = 0; i < S.Length; i++)
+                    if (S[i] == c)
+                        frequency++;
+
+                Console.WriteLine($"{c} {frequency}");
+                
+            }
+        }
+
+        public static int hashFunc(char c)
+        {
+            return (c - 'a');
+        }
+        public static void countFrequency(string S)
+        {
+            int[] Frequency = new int[26];
+
+            for (int i = 0; i < S.Length; ++i)
+            {
+                int index = hashFunc(S[i]);
+                Frequency[index]++;
+            }
+
+            for (int i = 0; i < 26; ++i)
+                Console.WriteLine($"{(char)(i + 'a')} {Frequency[i]}");
+            
+        }
+
     }
 }

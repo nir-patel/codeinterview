@@ -34,6 +34,8 @@ namespace ArrayExample
 
             int[] result1 = MoveZeros(new int[] { 1, 10, 20, 0, 59, 63, 0, 88, 0 });
             PrintArry(result1);
+
+            CricularArray(new int[]{0,1,2,3,4,5 },  2);
         }
 
         private static bool FindSumOfTwo(int[] test, int v)
@@ -144,6 +146,31 @@ namespace ArrayExample
             {
                 Console.Write(arr[i] + ",");
             }
+            Console.WriteLine();
+        }
+
+        private static void CricularArray(int[] arr, int rotate)
+        {
+            int maxindex = arr.Length - 1;
+            int[] temp = new int[arr.Length];
+
+            for(int i =0; i < arr.Length; i++)
+            {
+                if(rotate > arr.Length - 1)
+                {
+                    rotate = 0;
+                }
+
+                temp[i] = arr[rotate];
+                rotate++;
+
+            }
+            PrintArry(temp);
+            //012345
+            //123450
+            //234501
+            //345012
+            //450123
 
         }
 
