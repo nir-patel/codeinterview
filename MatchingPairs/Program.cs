@@ -16,7 +16,7 @@ namespace MatchingPairs
             Console.WriteLine($"Decrypted Pass: {decryptPassword(epass)}");
 
             //countFre("ababcd");
-            countFrequency("ababcd");
+            countFrequency("aAbabcd");
         }
 
         private static int matchingPairs(string s, string t)

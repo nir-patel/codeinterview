@@ -7,7 +7,9 @@ namespace Sorting
     {
         static void Main(string[] args)
         {
-            int[] result = bubbleSort(new int[] { 1, 5, 7, 1 });
+            //int c = minimumSwaps(new int[] { 6, 5, 7, 1 });
+
+            int[] result = bubbleSort(new int[] { 1, 5, 7, 1 }); //{ 1, 5, 7, 1 });
             bool splitable = IsSplitable(result);
             Console.WriteLine(splitable);
 
@@ -16,7 +18,7 @@ namespace Sorting
             };
             Console.WriteLine("Unique Triangles: " + CointingTriangles(t));
 
-
+            
             //-------------------------------------
             IsSum(new int[] { 1, 3, 1, 2, 15 }, 6);
 
@@ -27,7 +29,7 @@ namespace Sorting
             };
             Console.WriteLine("Graph: {{ 1, 0}, {2, 0 }, { 0, 5 },{5, 6}, { 3, 1 }, { 3, 2 }}");
             List<int>  dfs = MapDependencyDFS(prer, prer.GetLength(0));
-            Console.WriteLine("Graph dependecy DFS: ");
+            Console.WriteLine("Course Prerequisist order: ");
             foreach(int a in dfs)
             {
                 Console.Write(a + " ");
@@ -63,6 +65,7 @@ namespace Sorting
 
         static int[] bubbleSort(int[] arr)
         {
+            int cnt = 0;
             int n = arr.Length;
             for (int i = 0; i < n - 1; i++)
             {
@@ -74,10 +77,36 @@ namespace Sorting
                         int temp = arr[j];
                         arr[j] = arr[j + 1];
                         arr[j + 1] = temp;
+                        cnt++;
                     }
                 }
             }
             return arr;
+        }
+        public static int minimumSwaps(int[] arr)
+        {
+            //4 3 1 2
+            //2 3 1 4 cnt =1
+            //3 2 1 4 cnt = 2
+            //1 2 3 4 cnt = 3
+            int count = 0;
+            int i = 0;
+            while (i < arr.Length)
+            {
+                if (arr[i] != i + 1)
+                {
+                    while (arr[i] != i + 1)
+                    {
+                        int temp = 0;
+                        temp = arr[arr[i] - 1]; //temp = 1
+                        arr[arr[i] - 1] = arr[i]; //arr[2] = 3
+                        arr[i] = temp; //arr[0] = 1
+                        count++;
+                    }
+                }
+                i++;
+            }
+            return count;
         }
 
         private static bool IsSplitable(int[] arr)
@@ -275,7 +304,7 @@ namespace Sorting
             ProcessBFS(graph, new List<int>() { start }, cOrder,visited) ;
             return cOrder;
         }
-        public static void ProcessBFS(int[,] graph, List<int> edges,List<int> bfs, bool[] visited)
+        private static void ProcessBFS(int[,] graph, List<int> edges,List<int> bfs, bool[] visited)
         {
             List<int> newedges = new List<int>();
             foreach(int i in edges)
@@ -318,7 +347,7 @@ namespace Sorting
             }
             return cOrder;
         }
-        public static void ProcessDFS(int[,] graph, int edge, List<int> dfs, bool[] visited)
+        private static void ProcessDFS(int[,] graph, int edge, List<int> dfs, bool[] visited)
         {
             if(!dfs.Contains(edge))
             {

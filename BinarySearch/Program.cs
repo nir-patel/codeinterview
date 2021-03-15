@@ -21,25 +21,23 @@ namespace BinarySearch
 
         static int binarySearchR(int[] arr, int l,int r, int x)
         {
-            if (r >= l)
+            if (l <= r)
             {
                 int mid = l + (r - l) / 2;
 
                 if (arr[mid] == x)
                     return mid;
 
-                // If element is smaller than mid, then 
-                // it can only be present in left subarray 
-                if (arr[mid] > x)
+
+                if (x < arr[mid])
+                {
                     return binarySearchR(arr, l, mid - 1, x);
-
-                // Else the element can only be present 
-                // in right subarray 
-                return binarySearchR(arr, mid + 1, r, x);
+                }
+                else if(x > arr[mid])
+                {
+                    return binarySearchR(arr, mid + 1, r, x);
+                } 
             }
-
-            // We reach here when element is not present 
-            // in array 
             return -1;
         }
 
