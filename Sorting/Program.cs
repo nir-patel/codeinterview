@@ -333,7 +333,7 @@ namespace Sorting
 
         }
 
-        //[[1,0],[2,0],[0,5],[5,6],[3,1],[3,2]]
+        //[[1,0],[2,0],[0,5],[5,6],[6,6],[3,1],[3,2]]
         public static List<int> DFS(int[,] graph, int start)
         {
             bool[] visited = new bool[graph.GetLength(0)];

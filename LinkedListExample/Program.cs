@@ -33,6 +33,18 @@ namespace LinkedListExample
             slist.PrintLinkedList(slist.head);
         }
     }
+
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node(int item)
+        {
+            data = item;
+            next = null;
+        }
+    }
+
     public class SingleLinkedList
     {
         public Node head;
@@ -174,7 +186,7 @@ namespace LinkedListExample
         {
             Node current = head;
             Node previous = null;
-            if(current.data == data && current.next != null)
+            if(current.data == data && current.next != null) //if very first node match
             {
                 head = current.next;
                 return;
@@ -214,15 +226,5 @@ namespace LinkedListExample
 
     }
 
-    public class Node
-    {
-        public int data;
-        public Node next;
-        public Node(int item)
-        {
-            data = item;
-            next = null;
-        }
-    }
 
 }

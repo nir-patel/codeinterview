@@ -174,7 +174,45 @@ namespace ArrayExample
 
         }
 
+        public static int MaxProfit(int[] prices)
+        {
 
+            int min = -1;
+            int max = -1;
+            int maxprofit = 0;
+            for (int i = 0; i < prices.Length - 1; i++)
+            {
+
+                if (prices[i] < prices[i + 1])
+                {
+                    if (min == -1)
+                    {
+                        min = prices[i];
+                        max = prices[i + 1];
+                        maxprofit = max - min;
+                    }
+                    if (min > prices[i])
+                    {
+                        min = prices[i];
+                        max = -1;
+                    }
+                    if (max <= prices[i + 1])
+                    {
+                        max = prices[i + 1];
+                        if (maxprofit < (max - min))
+                        {
+                            maxprofit = max - min;
+                        }
+
+                    }
+                }
+
+            }
+
+            return maxprofit;
+
+
+        }
 
 
     }
