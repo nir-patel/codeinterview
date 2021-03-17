@@ -214,7 +214,65 @@ namespace ArrayExample
 
         }
 
+        public int MaxProfitII(int[] prices)
+        {
 
+
+            int min = 0;
+            int max = 0;
+
+            int profit2 = 0;
+            int total = 0;
+            int j = 0;
+
+            int profit1 = 0;
+
+            int[] a = prices;
+
+            for (int i = 0; i < prices.Length - 1; i++)
+            {
+
+                j = i + 1;
+                if (a[i] < a[j])
+                {
+
+                    profit1 += a[j] - a[i];
+
+
+                    if (profit2 == 0)
+                    {
+                        profit2 = a[j] - a[i];
+                        total += profit2;
+                        min = a[i];
+                        max = a[j];
+                    }
+                    if (min > a[i])
+                    {
+                        min = a[i];
+                        max = -1;
+                    }
+                    if (max <= a[j])
+                    {
+
+                        max = a[j];
+                        if (profit2 < (max - min))
+                        {
+                            profit2 = max - min;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            return Math.Max(profit1, profit2);
+
+
+
+
+
+        }
     }
 
 }

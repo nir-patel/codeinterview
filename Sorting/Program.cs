@@ -9,6 +9,7 @@ namespace Sorting
         {
             //int c = minimumSwaps(new int[] { 6, 5, 7, 1 });
 
+
             int[] result = bubbleSort(new int[] { 1, 5, 7, 1 }); //{ 1, 5, 7, 1 });
             bool splitable = IsSplitable(result);
             Console.WriteLine(splitable);
@@ -111,6 +112,9 @@ namespace Sorting
 
         private static bool IsSplitable(int[] arr)
         {
+            
+            
+
             int l = 0;
             int r = arr.Length - 1;
             int lc = arr[l], rc = arr[r];
@@ -307,6 +311,7 @@ namespace Sorting
         private static void ProcessBFS(int[,] graph, List<int> edges,List<int> bfs, bool[] visited)
         {
             List<int> newedges = new List<int>();
+            
             foreach(int i in edges)
             {
                 for(int j = 0; j < graph.GetLength(0); j++)

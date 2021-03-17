@@ -19,6 +19,8 @@ public class RotationalCipher
         int index;
         string result = "";
 
+        
+
         foreach (char c in input.ToLower())
         {
             index = -1;
