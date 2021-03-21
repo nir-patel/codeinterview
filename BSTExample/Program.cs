@@ -15,6 +15,9 @@ namespace BSTExample
             bst.InsertNode(70);
             bst.InsertNode(60);
             bst.InsertNode(80);
+            bst.InsertNode(90);
+            //bst.InsertNode(95);
+            //bst.InsertNode(78);
 
             //bst.Insert(50);
             //bst.Insert(30);
@@ -27,12 +30,11 @@ namespace BSTExample
             bst.DisplayTree();
             bst.leftView(bst.root);
 
-            int levels = bst.getHeight(bst.root) + 1;
-            levels = bst.getHeight(bst.root,0,0) + 1;
 
+            int levels = bst.getHeight(bst.root) + 1;
             int[] sum = new int[levels];
             bst.calculateLevelSum(bst.root, 0, sum);
-
+            Console.WriteLine("Sum of each level: ");
             for (int i = 0; i < levels; i++)
                 Console.WriteLine(sum[i]);
         }
@@ -123,6 +125,7 @@ namespace BSTExample
         {
             Console.WriteLine("Printing Left view");
             leftViewUtil(root, 1);
+            Console.WriteLine();
         }
         public int max_level = 0;
         public void leftViewUtil(Node node, int level)
@@ -196,6 +199,7 @@ namespace BSTExample
 
         public void DisplayTree()
         {
+            Console.WriteLine("Inorder traversal of BST");
             inorderRec(root);
         }
         // Inorder traversal of BST

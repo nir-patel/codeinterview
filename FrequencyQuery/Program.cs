@@ -75,23 +75,200 @@ namespace FrequencyQuery
             }
             return result;
         }
+        public static IList<string> RemoveComments(string[] source)
+        {
+
+            Dictionary<string, int> frequencymap = new Dictionary<string, int>();
+            frequencymap.Add("/*", 0);
+            List<string> result = new List<string>();
+
+            bool allow = false;
+
+            bool blockc = false;
+            bool linec = false;
+            int blocki = -1;
+            int linei = -1;
+
+            for (int i = 0; i < source.Length; i++)
+            {
+
+
+                string line = source[i];
+                //allow = true;
+                blockc = false;
+                linec = false;
+                blocki = -1;
+                linei = -1;
+
+
+                if (line.Contains("//"))
+                {
+                    linec = true;
+                    linei = line.IndexOf("//");
+                }
+                if (line.Contains("/*"))
+                {
+                    blockc = true;
+                    blocki = line.IndexOf("/*");
+                }
+                //------------------------
+
+                if (linec && frequencymap["/*"] == 0 )
+                {
+
+                    if(linei == 0)
+                    {
+                        allow = false;
+                    }
+                    if(blockc && blocki == 0)
+                    {
+                        //do nothing
+                    }
+                    if(blockc && linei < blocki)
+                    {
+                        allow = false;
+                    }
+                    if(linei > 0)
+                    {
+                        allow = true;
+                        line = line.Substring(0, linei);
+                    }
+                    
+
+                }
+
+                    if (blockc)
+                    {
+
+
+                        // /*
+                        if (blocki == 0)
+                        {
+                            allow = false;
+                            frequencymap["/*"]++;
+                        } // int b; // /* hi iam
+                        if (blocki > 0 && (linec && linei < blocki))
+                        {
+
+                            allow = true;
+                            line = line.Substring(0, line.IndexOf("//"));
+
+                        } // int b; /*
+                        else if (blocki > 0 && frequencymap["/*"] == 0)
+                        {
+
+                            frequencymap["/*"]++;
+                            allow = true;
+                            line = line.Substring(0, line.IndexOf("/*"));
+
+                        }
+
+                    }
+                    if (line.Contains("*/"))
+                    {
+
+                        // */ int a // OR */ // int a;
+                        if (linec && linei > line.IndexOf("*/"))
+                        {
+
+                            frequencymap["/*"]--;
+                            if (frequencymap["/*"] == 0)
+                            {
+                                allow = true;
+                                line = line.Substring(line.IndexOf("/*") + 2, linei);
+                            }
+
+                        }// int a; // /*
+                        if (linec && linei < line.IndexOf("*/"))
+                        {
+                            if (frequencymap["/*"] == 0)
+                            {
+                                allow = true;
+                                line = line.Substring(0, linei);
+                            }
+                        } // */ int a;
+                        if (!linec && line.IndexOf("*/") == 0)
+                        {
+                            frequencymap["/*"]--;
+                            if (frequencymap["/*"] == 0) { allow = true; }
+                            if (line.Length > 2)
+                            {
+                                line = line.Substring(line.IndexOf("*/") + 2, line.Length - 2);
+                            }
+                            else
+                            {
+                                line = string.Empty;
+                            }
+                        } // /* skhfksdfh */
+                        if (!linec && line.IndexOf("*/") > 0)
+                        {
+
+                            frequencymap["/*"]--;
+                            if (frequencymap["/*"] == 0) { allow = true; }
+
+                            if (line.Length - 1 > line.IndexOf("*/") + 1)
+                            {
+
+                                line = line.Substring(line.IndexOf("*/") + 2, (line.Length - line.IndexOf("*/") - 2));
+
+                            }
+                            else
+                            {
+                                line = string.Empty;
+                            }
+
+
+                        }
+
+                    }
+                
+
+                if (allow && !string.IsNullOrEmpty(line))
+                {
+                    result.Add(line);
+                    allow = false;
+                }
+
+            }
+            return result;
+
+        }
+
 
         static void Main(string[] args)
         {
             //TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-            int q = Convert.ToInt32(Console.ReadLine().Trim());
+            //int q = Convert.ToInt32(Console.ReadLine().Trim());
 
-            List<List<int>> queries = new List<List<int>>();
+            //List<List<int>> queries = new List<List<int>>();
 
-            for (int i = 0; i < q; i++)
+            //for (int i = 0; i < q; i++)
+            //{
+            //    queries.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(queriesTemp => Convert.ToInt32(queriesTemp)).ToList());
+            //}
+
+            //List<int> ans = freqQuery(queries);
+
+            //Console.WriteLine(String.Join("\n", ans));
+
+
+
+            string[] source = new string[]
             {
-                queries.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(queriesTemp => Convert.ToInt32(queriesTemp)).ToList());
-            }
-
-            List<int> ans = freqQuery(queries);
-
-            Console.WriteLine(String.Join("\n", ans));
+                "/*Test program */",
+                "int main()",
+                "{ ",
+                "  // variable declaration ",
+                "int a, b, c;",
+                "/* This is a test",
+                "   multiline  ",
+                "   comment for ",
+                "   testing */",
+                "a = b + c;", "}"
+            };
+            source = new string[] { "a/*comment", "line", "more_comment*/b" };
+            var result = RemoveComments(source);
 
             Console.Clear();
         }
