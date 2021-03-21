@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ArrayExample
 {
@@ -11,7 +12,7 @@ namespace ArrayExample
 
             Console.WriteLine("***********OutPut***********");
 
-
+            Roadslength(new List<int>() {5,1,6,1,3 });
             int[] v = { 6 };//{ 5, 7, 1, 2, 8, 4, 3 };
             int[] test = { 1, 5, 3, 3, 3 };//{ 3, 20, 1, 2, 7 };
             for (int i = 0; i < v.Length; i++)
@@ -273,6 +274,36 @@ namespace ArrayExample
 
 
         }
+
+
+        public static void Roadslength(List<int> roads)
+        {
+
+            List<int> result = new List<int>();
+            roads.Sort();
+            //var temp = roads.ToHashSet();
+
+            while (roads.Count > 0)
+            {
+                int minl = roads[0];
+                
+                result.Add(minl);
+                roads = (from r in roads
+                         where r != minl
+                         select (r - minl)
+                         ).ToList();
+
+                
+
+            }
+
+            var query = from i in Enumerable.Range(0, 10)
+                        select new { i, j = i + 1 };
+            var resultSet = query.ToHashSet();
+
+
+        }
+
     }
 
 }

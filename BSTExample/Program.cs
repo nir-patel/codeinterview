@@ -28,6 +28,7 @@ namespace BSTExample
             bst.leftView(bst.root);
 
             int levels = bst.getHeight(bst.root) + 1;
+            levels = bst.getHeight(bst.root,0,0) + 1;
 
             int[] sum = new int[levels];
             bst.calculateLevelSum(bst.root, 0, sum);
@@ -160,6 +161,23 @@ namespace BSTExample
 
             return (Math.Max(left, right) + 1);
         }
+        public int getHeight(Node root,int leftcnt, int rightcnt)
+        {
+            if (root.left == null &&
+                root.right == null)
+                return 0;
+
+
+            if (root.left != null)
+                getHeight(root.left,leftcnt++,rightcnt );
+
+
+            if (root.right != null)
+                getHeight(root.right,leftcnt,rightcnt++);
+
+            return (Math.Max(leftcnt, rightcnt) + 1);
+        }
+
         public void calculateLevelSum(Node node, int level,
                                          int[] sum)
         {

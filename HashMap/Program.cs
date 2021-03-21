@@ -129,6 +129,7 @@ namespace HashMap
         {
             var cntMag = GetDictionary(magazine);
             var cntNote = GetDictionary(note);
+
             bool result = true;
             foreach (var kvp in cntNote)
             {
