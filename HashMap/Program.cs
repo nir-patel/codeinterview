@@ -212,6 +212,7 @@ namespace HashMap
         static int sherlockAndAnagrams(string s)
         {
 
+            
 
             Dictionary<char, int> Frequencytable = new Dictionary<char, int>();
             Dictionary<int, int> TotalFrequency = new Dictionary<int, int>();
@@ -263,6 +264,40 @@ namespace HashMap
             return (int)result;
         }
 
+        public static void TestFun()
+        {
+            List<int> lstint = new List<int>() { 2,4,6,9,10};
+            List<string> lststr = new List<string>();// { "sdf","fhhg", "ertert"};
+            int[] arrint = new int[5];
+
+
+            Dictionary<string, int> dicstr = new Dictionary<string, int>();
+            Dictionary<int, int> dicint = new Dictionary<int, int>();
+
+            int n = 3;
+            string m = Convert.ToString(3, 2);
+
+            lststr.Add("ADASDS");
+            lststr.Add("ADASDS");
+            lststr.Add("ADASDS12");
+            lststr.Add("ADASDS23");
+
+            foreach(var str in lststr)
+            {
+                if (dicstr.ContainsKey(str.ToLower()))
+                {
+                    dicstr[str.ToLower()] += 1;
+                }
+                else
+                {
+                    dicstr.Add(str.ToLower(), 1);
+                }
+            }
+
+
+
+        }
+
         static void Main(string[] args)
         {
             //string[] mn = Console.ReadLine().Split(' ');
@@ -270,6 +305,7 @@ namespace HashMap
             //int m = Convert.ToInt32(mn[0]);
 
             //int n = Convert.ToInt32(mn[1]);
+            TestFun();
 
             sherlockAndAnagrams("ifailuhkqq");
             //a,b,b,a abba

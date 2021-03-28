@@ -12,6 +12,14 @@ namespace ArrayExample
 
             Console.WriteLine("***********OutPut***********");
 
+
+            List<List<int>> arr = new List<List<int>>();
+            arr.Add( new List<int>() {-10,-20,0,2,10 });
+            arr.Add(new List<int>() { 1,2,5,1,3,4 });
+            arr.Add(new List<int>() { -1, -5, 0,0,3,1 });
+            
+            minpositiveint(arr);
+
             Roadslength(new List<int>() {5,1,6,1,3 });
             int[] v = { 6 };//{ 5, 7, 1, 2, 8, 4, 3 };
             int[] test = { 1, 5, 3, 3, 3 };//{ 3, 20, 1, 2, 7 };
@@ -218,7 +226,7 @@ namespace ArrayExample
         public int MaxProfitII(int[] prices)
         {
 
-
+            
             int min = 0;
             int max = 0;
 
@@ -304,6 +312,50 @@ namespace ArrayExample
 
         }
 
-    }
+
+        public static List<int> minpositiveint(List<List<int>> array)
+        {
+            List<int> result = new List<int>();
+            foreach (var A in array)
+            {
+                int temp = 0;
+                A.Sort();
+                int min = A[0];
+                for (int i = 1; i < A.Count; i++)
+                {
+
+                    if (A[i] < 0)
+                    {
+                        min = 0;
+                    }
+                    else
+                    {
+                        if (A[i] == min)
+                        {
+                            
+                        }
+                        else if (A[i] != min + 1)
+                        {
+                            temp = min + 1;
+                        }
+                        else
+                        {
+                            min++;
+                        }
+                    }
+
+                }
+                if (temp == 0)
+                {
+                    temp = A[A.Count - 1] + 1;
+                }
+                result.Add(temp);
+            }
+
+            return result;
+
+        }
+    
+}
 
 }

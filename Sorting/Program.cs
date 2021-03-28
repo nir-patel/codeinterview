@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Sorting
@@ -49,7 +50,7 @@ namespace Sorting
         private static int[] SortArray(int[] arr)
         {
             int temp = 0;
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length - 1; i++)
             {
                 for (int j = i + 1; j < arr.Length; j++)
                 {

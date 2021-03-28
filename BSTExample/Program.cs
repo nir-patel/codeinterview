@@ -172,11 +172,11 @@ namespace BSTExample
 
 
             if (root.left != null)
-                getHeight(root.left,leftcnt++,rightcnt );
+                return getHeight(root.left,leftcnt++,rightcnt );
 
 
             if (root.right != null)
-                getHeight(root.right,leftcnt,rightcnt++);
+                return getHeight(root.right,leftcnt,rightcnt++);
 
             return (Math.Max(leftcnt, rightcnt) + 1);
         }
