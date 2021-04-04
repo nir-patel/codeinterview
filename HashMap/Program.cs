@@ -66,23 +66,14 @@ namespace HashMap
 
         public static int HashFun(string s, int hashsize)
         {
-            //int hashsize = HashTable.Length;
-            int index = 0;
             int total = 0;
-            char[] cArray = s.ToCharArray();
 
-            foreach (char c in cArray)
+            foreach (char c in s.ToCharArray())
             {
                 total = total + (int)(c - 'a');
             }
-            index = total % hashsize;
-            
-            return index;
+            return (total % hashsize);
         }
-
-
-    
-
 
         static void checkMagazine1(string[] magazine, string[] note)
         {
@@ -132,136 +123,61 @@ namespace HashMap
             return dic;
         }
 
-        public static int AnagramPairs(string s)
+        // Complete the freqQuery function below.
+        static List<int> freqQuery(List<List<int>> queries)
         {
-            int cnt = 0;
-            //abba
-            Dictionary<int, int> Frequencetable = new Dictionary<int, int>();
-            int index = -1;
-            for (int k = s.Length; k >= 1; k--)
+
+            List<int> result = new List<int>();
+            Dictionary<int, int> hastable = new Dictionary<int, int>();
+            foreach (List<int> line in queries)
             {
-                index++;
-                for (int i = 1; i <= k; i++)
+
+                //Console.WriteLine($"{line[0]} - {line[1]}");
+                int operation = line[0];
+                int value = line[1];
+
+                bool iscontain = hastable.ContainsKey(value);
+
+                if (operation == 1)
                 {
-                    string temp = "";
-                    int jj = index;
-                    for (int j = 0; j < i; j++)
+                    if (iscontain)
                     {
-                        temp += s[jj];
-                        jj++;
-                    }
-                    int key = GetKey(temp);
-                    if (Frequencetable.ContainsKey(key))
-                    {
-                        Frequencetable[key]++;
+                        hastable[value] += 1;
                     }
                     else
                     {
-                        Frequencetable.Add(key, 1);
+                        hastable.Add(value, 1);
                     }
                 }
-            }
-            cnt = Frequencetable.Where(f => f.Value > 1).Count();
-            return cnt;
-        }
-        public static int GetKey(string s)
-        {
-            int total = 0;
-            char[] ca = s.ToCharArray();
-            foreach (char c in ca)
-            {
-                total += (int)(c - 'a') + 1;
-            }
-            return total;
-        }
-
-
-        public static int AnagramPairsII(string s)
-        {
-            int cnt = 0;
-            //abba
-            Dictionary<int, int> Frequencetable = new Dictionary<int, int>();
-            int index = -1;
-            for (int k = s.Length; k >= 1; k--)
-            {
-                index++;
-                for (int i = 1; i <= k; i++)
+                else if (operation == 2)
                 {
-                    string temp = "";
-                    int jj = index;
-                    for (int j = 0; j < i; j++)
+                    if (iscontain)
                     {
-                        temp += s[jj];
-                        jj++;
-                    }
-                    int key = GetKey(temp);
-                    if (Frequencetable.ContainsKey(key))
-                    {
-                        Frequencetable[key]++;
-                    }
-                    else
-                    {
-                        Frequencetable.Add(key, 1);
-                    }
-                }
-            }
-            cnt = Frequencetable.Where(f => f.Value > 1).Count();
-            return cnt;
-        }
-        // Complete the sherlockAndAnagrams function below.
-        static int sherlockAndAnagrams(string s)
-        {
-
-            
-
-            Dictionary<char, int> Frequencytable = new Dictionary<char, int>();
-            Dictionary<int, int> TotalFrequency = new Dictionary<int, int>();
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 1; i < s.Length; i++)
-            {
-
-                for (int j = 0; j <= s.Length - i; j++)
-                {
-
-                    Frequencytable.Clear();
-
-                    for (int k = j; k < j + i; k++)
-                    {
-
-                        if (Frequencytable.ContainsKey(s[k]))
+                        int cnt = hastable[value];
+                        if (cnt > 1)
                         {
-                            Frequencytable[s[k]] += 1;
+                            hastable[value] = hastable[value] - 1;
                         }
-                        else
+                        else if (cnt == 1)
                         {
-                            Frequencytable.Add(s[k], 1);
+                            hastable.Remove(value);
                         }
-
                     }
-
-                    sb.Clear();
-                    foreach (var item in Frequencytable.OrderBy(o => o.Key))
+                }
+                else if (operation == 3)
+                {
+                    if (hastable.ContainsValue(value))
                     {
-                        sb.Append(item.Key + item.Value.ToString());
-                    }
-                    var key = sb.ToString().GetHashCode();
-                    if (TotalFrequency.ContainsKey(key))
-                    {
-                        TotalFrequency[key] += 1;
+                        result.Add(1);
                     }
                     else
                     {
-                        TotalFrequency.Add(key, 1);
+                        result.Add(0);
                     }
                 }
+
             }
-            long result = 0;
-            foreach (var item in TotalFrequency)
-            {
-                result = result + (item.Value * (item.Value - 1) / 2);
-            }
-            return (int)result;
+            return result;
         }
 
         public static void TestFun()
@@ -275,7 +191,7 @@ namespace HashMap
             Dictionary<int, int> dicint = new Dictionary<int, int>();
 
             int n = 3;
-            string m = Convert.ToString(3, 2);
+            string m = Convert.ToString(n, 2);
 
             lststr.Add("ADASDS");
             lststr.Add("ADASDS");
@@ -300,26 +216,114 @@ namespace HashMap
 
         static void Main(string[] args)
         {
-            //string[] mn = Console.ReadLine().Split(' ');
 
-            //int m = Convert.ToInt32(mn[0]);
-
-            //int n = Convert.ToInt32(mn[1]);
             TestFun();
-
-            sherlockAndAnagrams("ifailuhkqq");
-            //a,b,b,a abba
-            //ab,bb,ba
-            //a,b,b
-            //b,b,a
-
-            Console.WriteLine(AnagramPairs("ifailuhkqq"));
 
             string[] magazine = { "give", "me", "one", "grand", "today", "night" };
 
             string[] note = { "give", "one", "grand", "today" };
 
-            checkMagazine(magazine, note);
+            //checkMagazine(magazine, note);
+            checkMagazine1(magazine, note);
+
+            //List<int> ans = freqQuery(queries);
+            //Console.WriteLine(String.Join("\n", ans));
+
+
+            HashTable<string> hashTable = new HashTable<string>(5);
+            hashTable.Add("nirav");
+            hashTable.Add("shruti");
+            hashTable.Add("ruhi");
+            hashTable.Add("saurabh");
+
+            var result = hashTable.Find("ruhi1");
+
         }
+
     }
+
+    public class HashObject<T>
+    {
+        public HashObject(T k)
+        {
+            key = k;
+            values = new List<T>();
+            
+        }
+        public T key { get; set; }
+        public List<T> values { get; set; }
+        
+    }
+
+
+    public class HashTable<T>
+    {
+        private int _size;
+        private HashObject<T>[] _hashTable;
+
+        public HashTable(int size)
+        {
+            _size = size;
+            _hashTable = new HashObject<T>[_size];
+        }
+
+        private int GetIndex(T key)
+        {
+            int index = 0;
+            index = key.GetHashCode() % _size;
+            return Math.Abs(index);
+        }
+
+        public void Add(T key, T value)
+        {
+            int index = GetIndex(key);
+            if(_hashTable[index] == null)
+            {
+                var hashobject = new HashObject<T>(key);
+                hashobject.values.Add(value);
+                _hashTable[index] = hashobject;
+            }
+            else
+            {
+                var hashobject = _hashTable[index];
+                hashobject.values.Add(value);
+            }
+        }
+
+        public void Add(T value)
+        {
+            int index = GetIndex(value);
+            if (_hashTable[index] == null)
+            {
+                var hashobject = new HashObject<T>(value);
+                hashobject.values.Add(value);
+                _hashTable[index] = hashobject;
+            }
+            else
+            {
+                var hashobject = _hashTable[index];
+                hashobject.values.Add(value);
+            }
+        }
+
+        public T Find(T value)
+        {
+            T result;
+            int index = GetIndex(value);
+            result = _hashTable[index].values.Find(v => v.Equals(value));
+            return result;
+        }
+
+        public T Find(T key, T value)
+        {
+            T result;
+            int index = GetIndex(key);
+            result = _hashTable[index].values.Find(v=> v.Equals(value));
+            return result;
+        }
+
+
+    }
+
+
 }
