@@ -164,22 +164,6 @@ namespace BSTExample
 
             return (Math.Max(left, right) + 1);
         }
-        public int getHeight(Node root,int leftcnt, int rightcnt)
-        {
-            if (root.left == null &&
-                root.right == null)
-                return 0;
-
-
-            if (root.left != null)
-                return getHeight(root.left,leftcnt++,rightcnt );
-
-
-            if (root.right != null)
-                return getHeight(root.right,leftcnt,rightcnt++);
-
-            return (Math.Max(leftcnt, rightcnt) + 1);
-        }
 
         public void calculateLevelSum(Node node, int level,
                                          int[] sum)

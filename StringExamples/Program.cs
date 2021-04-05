@@ -59,6 +59,16 @@ namespace StringExamples
 
         }
 
+        private static void test()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Nirav Patel");
+            char c = sb[0];
+            char[] carray = sb.ToString().ToCharArray();
+            sb.Append(carray);
+            string s = sb.ToString(0, 5);
+        }
+
         private static int matchingPairs(string s, string t)
         {
             Console.WriteLine("s: " + s);
@@ -386,8 +396,6 @@ namespace StringExamples
             }
             return total;
         }
-
-
         public static int AnagramPairsII(string s)
         {
             int cnt = 0;
@@ -420,6 +428,8 @@ namespace StringExamples
             cnt = Frequencetable.Where(f => f.Value > 1).Count();
             return cnt;
         }
+
+
         // Complete the sherlockAndAnagrams function below.
         static int sherlockAndAnagrams(string s)
         {
@@ -631,5 +641,48 @@ namespace StringExamples
             return result;
 
         }
+
+
+        /*
+         Sherlock considers a string to be valid if all characters of the string appear the same number of times. It is also valid if he can remove just  character at  index in the string, and the remaining characters will occur the same number of times. Given a string , determine if it is valid. If so, return YES, otherwise return NO.
+         */
+        static string SherlockandtheValidString(string s)
+        {
+
+            Dictionary<char, int> frequencytable = new Dictionary<char, int>();
+
+            foreach (char c in s.ToCharArray())
+            {
+                if (frequencytable.ContainsKey(c))
+                {
+                    frequencytable[c] += 1;
+                }
+                else
+                {
+                    frequencytable.Add(c, 1);
+                }
+            }
+            int minoccurance = frequencytable.Values.Min();
+            int maxoccurance = frequencytable.Values.Max();
+
+            int mincount = frequencytable.Values.Where(v => v == minoccurance).Count();
+            int maxcount = frequencytable.Values.Where(v => v == maxoccurance).Count();
+
+            if ((maxoccurance - minoccurance) <= 1 && (maxcount == 1))
+            {
+                return "YES";
+            }
+            else if ((maxoccurance - minoccurance) <= 1 && (mincount == 1))
+            {
+                return "YES";
+            }
+            else
+            {
+                return "NO";
+            }
+
+        }
+
+
     }
 }

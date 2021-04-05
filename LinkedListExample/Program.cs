@@ -186,19 +186,22 @@ namespace LinkedListExample
         {
             Node current = head;
             Node previous = null;
-            if(current.data == data && current.next != null) //if very first node match
+            if(current.data == data) //if first node match
             {
-                head = current.next;
+                if(current.next != null)
+                {
+                    head = current.next;
+                }
+                else
+                {
+                    head = null;
+                }
                 return;
             }
             while(current != null)
             {
                 if(current.data == data)
                 {
-                    if(previous == null && current.next == null) // One node only
-                    {
-                        head = null;
-                    }
                     previous.next = current.next;
                     return;
                 }

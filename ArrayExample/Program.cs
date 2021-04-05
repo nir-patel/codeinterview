@@ -175,12 +175,6 @@ namespace ArrayExample
 
             }
             PrintArry(temp);
-            //012345
-            //123450
-            //234501
-            //345012
-            //450123
-
         }
 
         public static int MaxProfit(int[] prices)

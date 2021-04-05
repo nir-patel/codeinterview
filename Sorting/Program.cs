@@ -9,23 +9,20 @@ namespace Sorting
         static void Main(string[] args)
         {
             //int c = minimumSwaps(new int[] { 6, 5, 7, 1 });
-
-
-            int[] result = bubbleSort(new int[] { 1, 5, 7, 1 }); //{ 1, 5, 7, 1 });
+            int[] result = SortArray(new int[] { 1, 5, 7, 1 }); //{ 1, 5, 7, 1 });
+            result = bubbleSort(new int[] { 1, 5, 7, 1 }); //{ 1, 5, 7, 1 });
+            //-------------------------------------
             bool splitable = IsSplitable(result);
             Console.WriteLine(splitable);
+
+            IsSum(new int[] { 1, 3, 1, 2, 15 }, 6);
+            //------------------------------------
 
             int[,] t = new int[,]{
                 { 5, 8, 9 }, {5, 9, 8 }, {9, 5, 8 }, {9, 8, 5 }, {8, 9, 5 }, {8, 5, 9}
             };
             Console.WriteLine("Unique Triangles: " + CointingTriangles(t));
-
-            
-            //-------------------------------------
-            IsSum(new int[] { 1, 3, 1, 2, 15 }, 6);
-
-
-            //------------------------------------
+            //----------------
             int[,] prer = new int[,] {
                 { 1, 0}, {2, 0 }, { 0, 5 },{5,6 }, { 3, 1 }, { 3, 2 }
             };
@@ -113,9 +110,6 @@ namespace Sorting
 
         private static bool IsSplitable(int[] arr)
         {
-            
-            
-
             int l = 0;
             int r = arr.Length - 1;
             int lc = arr[l], rc = arr[r];
