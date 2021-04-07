@@ -9,13 +9,15 @@ namespace StringExamples
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Matching pairs: " + matchingPairs("mno", "mno"));
+            //test();
 
-            Console.WriteLine(minLengthSubstring("dcbefebce", "fd"));
+            //Console.WriteLine("Matching pairs: " + matchingPairs("mno", "mno"));
 
-            string epass = "34Ah*ck0rr0nk";
-            Console.WriteLine($"Encrypted Pass: {epass}");
-            Console.WriteLine($"Decrypted Pass: {decryptPassword(epass)}");
+            //Console.WriteLine(minLengthSubstring("dcbefebce", "fd"));
+
+            //string epass = "34Ah*ck0rr0nk";
+            //Console.WriteLine($"Encrypted Pass: {epass}");
+            //Console.WriteLine($"Decrypted Pass: {decryptPassword(epass)}");
 
 
             //countFre("ababcd");
@@ -67,6 +69,11 @@ namespace StringExamples
             char[] carray = sb.ToString().ToCharArray();
             sb.Append(carray);
             string s = sb.ToString(0, 5);
+
+
+            int n = 50;
+            string binaryvalue = Convert.ToString(n, 2);
+            
         }
 
         private static int matchingPairs(string s, string t)
