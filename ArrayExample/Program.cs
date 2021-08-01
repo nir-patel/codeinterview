@@ -4,6 +4,47 @@ using System.Linq;
 
 namespace ArrayExample
 {
+
+    public class Crab
+    {
+        public virtual void Display()
+        {
+            Console.WriteLine( "Crab clap");
+        }
+    }
+
+    public class CoCoCrab : Crab
+    {
+        public CoCoCrab(string name, int id)
+        {
+
+        }
+        public override void Display()
+        {
+            Console.WriteLine("CoCoCrab CLAP");
+        }
+
+        public void CoCoCrabDisplay()
+        {
+            Console.WriteLine("CoCoCrab Display");
+        }
+    }
+
+    public class CoCoCoCrab : CoCoCrab
+    {
+        
+        public CoCoCoCrab(string name) :base(name,1)
+        {
+
+        }
+
+        public void Display1()
+        {
+            Console.WriteLine("CoCoCoCrab CLAP");
+        }
+    }
+
+
     class Program
     {
 
@@ -11,6 +52,26 @@ namespace ArrayExample
         {
 
             Console.WriteLine("***********OutPut***********");
+
+            Crab c = new Crab();
+            c.Display();
+
+            CoCoCrab cc = new CoCoCrab("name",1);
+            cc.Display();
+            
+
+            //cc = (Crab)c; //base class can not use to cast derive class.
+            //cc.Display();
+
+            c = (CoCoCrab)cc;
+            c.Display();
+            
+
+            CoCoCoCrab ccc = new CoCoCoCrab("name");
+            ccc.Display();
+            ccc.Display1();
+            ccc.CoCoCrabDisplay();
+            
 
 
             List<List<int>> arr = new List<List<int>>();
@@ -310,40 +371,53 @@ namespace ArrayExample
         public static List<int> minpositiveint(List<List<int>> array)
         {
             List<int> result = new List<int>();
+
+
+
             foreach (var A in array)
             {
-                int temp = 0;
+
                 A.Sort();
-                int min = A[0];
-                for (int i = 1; i < A.Count; i++)
+                HashSet<int> h = A.Where(i => i > 0).ToHashSet<int>();
+                int min = 1;
+                while (h.Contains(min))
                 {
+                    min++;
+                }
+                result.Add(min);
 
-                    if (A[i] < 0)
-                    {
-                        min = 0;
-                    }
-                    else
-                    {
-                        if (A[i] == min)
-                        {
+                //int temp = 0;
+                //A.Sort();
+                //int min = A[0];
+                //for (int i = 1; i < A.Count; i++)
+                //{
+
+                //    if (A[i] < 0)
+                //    {
+                //        min = 0;
+                //    }
+                //    else
+                //    {
+                //        if (A[i] == min)
+                //        {
                             
-                        }
-                        else if (A[i] != min + 1)
-                        {
-                            temp = min + 1;
-                        }
-                        else
-                        {
-                            min++;
-                        }
-                    }
+                //        }
+                //        else if (A[i] != min + 1)
+                //        {
+                //            temp = min + 1;
+                //        }
+                //        else
+                //        {
+                //            min++;
+                //        }
+                //    }
 
-                }
-                if (temp == 0)
-                {
-                    temp = A[A.Count - 1] + 1;
-                }
-                result.Add(temp);
+                //}
+                //if (temp == 0)
+                //{
+                //    temp = A[A.Count - 1] + 1;
+                //}
+                //result.Add(temp);
             }
 
             return result;

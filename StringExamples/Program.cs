@@ -9,27 +9,29 @@ namespace StringExamples
     {
         static void Main(string[] args)
         {
-            //test();
+            test();
 
-            //Console.WriteLine("Matching pairs: " + matchingPairs("mno", "mno"));
+            FindOccurance("qweqweniravavqweqweniravavqweqweavavniravav");
 
-            //Console.WriteLine(minLengthSubstring("dcbefebce", "fd"));
+            Console.WriteLine("Matching pairs: " + matchingPairs("mno", "mno"));
 
-            //string epass = "34Ah*ck0rr0nk";
-            //Console.WriteLine($"Encrypted Pass: {epass}");
-            //Console.WriteLine($"Decrypted Pass: {decryptPassword(epass)}");
+            Console.WriteLine(minLengthSubstring("dcbefebce", "fd"));
 
-
-            //countFre("ababcd");
-            //countFrequency("ababcd");
+            string epass = "34Ah*ck0rr0nk";
+            Console.WriteLine($"Encrypted Pass: {epass}");
+            Console.WriteLine($"Decrypted Pass: {decryptPassword(epass)}");
 
 
-            //Console.Write("Enter rotation number:");
-            //int ip = int.Parse(Console.ReadLine());
-            //Console.WriteLine(rotationalCipher("nirav-649", ip));
+            countFre("ababcd");
+            countFrequency("ababcd");
 
 
-            //Console.WriteLine(ReverseWords("Nirav Patel"));
+            Console.Write("Enter rotation number:");
+            int ip = int.Parse(Console.ReadLine());
+            Console.WriteLine(rotationalCipher("nirav-649", ip));
+
+
+            Console.WriteLine(ReverseWords("Nirav Patel"));
 
             Longestsubstring("abcdabcdabcdefg");
 
@@ -73,8 +75,43 @@ namespace StringExamples
 
             int n = 50;
             string binaryvalue = Convert.ToString(n, 2);
+            binaryvalue.PadLeft(9, '0');
+
+
+            int[] arr = new int[5];
+            HashSet<int> h = arr.Where(i=> i> 0).ToHashSet<int>();
+            h.ToArray<int>();
+            
             
         }
+
+        private static int FindOccurance(string s)
+        {
+            int result = 0;
+            string ip = "niravav";
+            bool conti = true;
+            while(s.Length > 0)
+            {
+                foreach(char c in ip)
+                {
+                    if (s.Contains(c))
+                    {
+                        var i = s.IndexOf(c);
+                        s = s.Remove(i, 1);
+                    }
+                    else
+                    {
+                        conti = false;
+                        break;
+                    }
+                }
+                if (!conti) { break; }
+                result++;
+            }
+            return result;
+        }
+
+
 
         private static int matchingPairs(string s, string t)
         {

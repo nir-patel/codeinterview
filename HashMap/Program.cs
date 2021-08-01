@@ -80,6 +80,9 @@ namespace HashMap
             var cntMag = GetDictionary(magazine);
             var cntNote = GetDictionary(note);
 
+            //var a = cntNote.Where(kvp => "ASGFD".Contains(kvp.Key)).Select(v => v.Value).Min();
+            
+
             bool result = true;
             foreach (var kvp in cntNote)
             {

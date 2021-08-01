@@ -13,24 +13,29 @@ namespace LinkedListExample
             //LinkedList<int> sentence = new LinkedList<int>(new int[] { 1, 2, 8, 9, 12, 16 });
 
 
-            SingleLinkedList slist = new SingleLinkedList();
-            slist.CreateList(new int[] { 2, 15, 8, 9, 16, 12 });
-            Node n = slist.head;
+            SingleLinkedList slist = new SingleLinkedList();//1,2,8,9,12,16
+            slist.CreateList(new int[] { 1, 2, 8, 4 ,9, 12, 16 });//2, 15, 8, 9, 16, 12
             slist.PrintLinkedList(slist.head);
             Console.WriteLine("Last Node: " + slist.GetLastNode().data);
 
-            Console.Write("Enter node value to Delete that node:-> ");
-            var key = int.Parse(Console.ReadLine());
-            slist.DeleteNode(key);
+            slist.ReverseOperation();
 
-            slist.AddNode(10);
+            slist.ReverseList();
             slist.PrintLinkedList(slist.head);
             Console.WriteLine("Last Node: " + slist.GetLastNode().data);
-            //Console.WriteLine("Middle Node: " + slist.GetMiddleNode(slist.head).data);
 
-            slist.MergeSort(slist.head);
-            Console.WriteLine("Sorted List");
-            slist.PrintLinkedList(slist.head);
+            //Console.Write("Enter node value to Delete that node:-> ");
+            //var key = int.Parse(Console.ReadLine());
+            //slist.DeleteNode(key);
+
+            //slist.AddNode(10);
+            //slist.PrintLinkedList(slist.head);
+            //Console.WriteLine("Last Node: " + slist.GetLastNode().data);
+            ////Console.WriteLine("Middle Node: " + slist.GetMiddleNode(slist.head).data);
+
+            //slist.MergeSort(slist.head);
+            //Console.WriteLine("Sorted List");
+            //slist.PrintLinkedList(slist.head);
         }
     }
 
@@ -56,21 +61,12 @@ namespace LinkedListExample
 
         public void CreateList(int[] arr)
         {
-            Node current = new Node(0);
-            for (int i = 0; i < arr.Length; i++)
+           
+            foreach(int i in arr)
             {
-                Node n = new Node(arr[i]);
-                if (head == null)
-                {
-                    head = n;
-                    current = head;
-                }
-                else
-                {
-                    current.next = n;
-                    current = n;
-                }
+                AddNode(i);
             }
+
         }
         public void PrintLinkedList(Node head)
         {
@@ -98,16 +94,82 @@ namespace LinkedListExample
         }
         public void AddNode(int data)
         {
-            Node n = GetLastNode();
-            if(n == null)
+            if (head == null)
             {
                 head = new Node(data);
             }
             else
             {
-                n.next = new Node(data);
+                Node current = head;
+                while (current.next != null)
+                {
+                    current = current.next;
+                }
+                current.next = new Node(data);
             }
         }
+
+        //------------------------------------
+        public void ReverseOperation()
+        {
+            Node current = head;
+            Node newlist = null;
+            Node previous = null;
+            while (current != null)
+            {
+                if (current.data % 2 == 0)
+                {
+                    newlist = Createnewlist(newlist, current.data);
+                }
+                else
+                {
+                    if(previous != null && newlist != null)
+                    {
+                        newlist = ReverseList1(newlist);
+                        //get last node and lastnode.next = current
+                        newlist.next = current;
+                        previous.next = newlist;
+                        newlist = null;
+                        
+                    }
+                    previous = current;
+                }
+                current = current.next;
+            }
+
+        }
+        private Node Createnewlist(Node newlist, int data)
+        {
+            if (newlist == null)
+            {
+                newlist = new Node(data);
+            }
+            else
+            {
+                Node current = newlist;
+                while (current.next != null)
+                {
+                    current = current.next;
+                }
+                current.next = new Node(data);
+            }
+            return newlist;
+        }
+        private Node ReverseList1(Node head)
+        {
+            Node current = head;
+            Node prev = null, next = null;
+            while (current != null)
+            {
+                next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+            head = prev;
+            return head;
+        }
+        //-----------------------------------------
 
         public void PushNode(int data)
         {
